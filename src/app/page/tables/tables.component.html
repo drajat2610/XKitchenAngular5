@@ -1,0 +1,18 @@
+<h3>Tables</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Seat</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let table of tables">
+      <td>{{table.code}}</td>
+      <td>{{table.seat}}</td>
+      <td>{{table.description}}</td>
+    </tr>
+  </tbody>
+</table>
+
