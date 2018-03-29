@@ -1,0 +1,41 @@
+<form class="user-form" #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+  <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="_userService.selectedUser._id">
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="userId">UserId</label>
+      <input class="form-control" name="userId" #userId="ngModel" [(ngModel)]="_userService.selectedUser.userId">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="_userService.selectedUser.password">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="badgeId">BadgeId</label>
+      <input class="form-control" name="badgeId" #badgeId="ngModel" [(ngModel)]="_userService.selectedUser.badgeId">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="nick">Nick</label>
+      <input class="form-control" name="nick" #nick="ngModel" [(ngModel)]="_userService.selectedUser.nick">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="fullName">Fullname</label>
+      <input class="form-control" name="fullName" #fullName="ngModel" [(ngModel)]="_userService.selectedUser.fullName">
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <button type="submit" class="btn btn-lg btn-block btn-info">Submit</button>
+    </div>
+    <div class="form-group col-md-6">
+      <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(userForm)">Reset</button>
+    </div>
+  </div>
+</form>

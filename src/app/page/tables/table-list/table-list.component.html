@@ -1,0 +1,23 @@
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th>Code</th>
+      <th>Seat</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let table of _tableService.tableList; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{table.code}}</td>
+      <td>{{table.seat}}</td>
+      <td>{{table.description}}</td>
+      <td>
+        <input type="button" class="btn btn-warning" value="Edit" (click)="onEdit(table._id)">
+        <input type="button" class="btn btn-danger" value="Delete" (click)="onDelete(table._id)">
+      </td>
+    </tr>
+  </tbody>
+</table>
