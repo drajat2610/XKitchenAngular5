@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class CategoryService {
 
-  private _url = "http://localhost:3000/api/categories";
+  private _url = "https://thawing-springs-66958.herokuapp.com/api/categories/";
 
   selectedCategory: Category; //dipakai buat detail
   categoryList: Category[]; //dipakai buat list
@@ -46,14 +46,10 @@ export class CategoryService {
 
   patchCategory(_id, category: Category) {
     const data = JSON.stringify(category);
-    const body = [
-      { 'propName': 'code', 'value': category.code },
-      { 'propName': 'initial', 'value': category.initial },
-      { 'propName': 'name', 'value': category.name }
-    ]
+    
     const headerOptions = new Headers({'Content-Type': 'application/json'});
     const requestOptions = new RequestOptions({method: RequestMethod.Patch, headers: headerOptions});
-    return this.http.patch(this._url + '/' + _id, body, requestOptions)
+    return this.http.patch(this._url + '/' + _id, category, requestOptions)
                     .map(x => x.json());
   }
 

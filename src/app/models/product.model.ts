@@ -5,5 +5,5 @@ export class Product {
     initial: String;
     name: String;
     description: String;
-    price: String;
+    price: Number;
 }

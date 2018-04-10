@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class TableService {
 
-  private _url = "http://localhost:3000/api/tables"
+  private _url = "https://thawing-springs-66958.herokuapp.com/api/tables/"
 
   selectedTable: Table;
   tableList: Table[];
@@ -44,14 +44,10 @@ export class TableService {
 
   patchTable(_id, table: Table) {
     const data = JSON.stringify(table);
-    const body = [
-      { 'propName': 'code', 'value': table.code },
-      { 'propName': 'seat', 'value': table.seat },
-      { 'propName': 'description', 'value': table.description }
-    ]
+    
     const headerOptions = new Headers({'Content-Type': 'application/json'});
     const requestOptions = new RequestOptions({method: RequestMethod.Patch, headers: headerOptions});
-    return this.http.patch(this._url + '/' + _id, body, requestOptions)
+    return this.http.patch(this._url + '/' + _id, table, requestOptions)
                     .map(x => x.json());
   }
 

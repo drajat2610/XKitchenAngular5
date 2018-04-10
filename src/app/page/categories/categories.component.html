@@ -1,3 +1,69 @@
 <h3>Categories</h3>
-<app-category></app-category>
-<app-category-list></app-category-list>
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Create New</button>
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Category</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="cat-form" #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="_categoryService.selectedCategory._id">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="code">Code</label>
+                    <input class="form-control" name="code" #code="ngModel" [(ngModel)]="_categoryService.selectedCategory.code">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="initial">Initial</label>
+                    <input class="form-control" name="initial" #initial="ngModel" [(ngModel)]="_categoryService.selectedCategory.initial">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label for="name">Name</label>
+                    <input class="form-control" name="name" #name="ngModel" [(ngModel)]="_categoryService.selectedCategory.name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <button type="submit" class="btn btn-lg btn-block btn-info">Submit</button>
+                </div>
+                <div *ngIf="isNew" class="form-group col-md-4">
+                    <button type="button" class="btn btn-lg btn-block btn-secondary" (click)="resetForm(categoryForm)">Reset</button>
+                </div>
+                <div class="form-group col-md-4">
+                    <button type="button" class="btn btn-lg btn-block btn-warning" (click)="this.modalRef.hide()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<br>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">No.</th>
+            <th class="text-center">Code</th>
+            <th class="text-center">Initial</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of _categoryService.categoryList; let i = index">
+            <td class="text-center">{{i+1}}</td>
+            <td>{{category.code}}</td>
+            <td>{{category.initial}}</td>
+            <td>{{category.name}}</td>
+            <td>
+                <input type="button" class="btn btn-warning" value="Edit" (click)="onEdit(template, category._id)">
+                <input type="button" class="btn btn-danger" value="Delete" (click)="onDelete(category._id)">
+            </td>
+        </tr>
+    </tbody>
+</table>

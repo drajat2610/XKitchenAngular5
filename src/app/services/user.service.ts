@@ -9,7 +9,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class UserService {
 
-  private _url = "http://localhost:3000/api/users";
+  private _url = "https://thawing-springs-66958.herokuapp.com/api/users/";
 
   selectedUser: User;
   userList: User[];
@@ -44,16 +44,10 @@ export class UserService {
 
   patchUser(_id, user: User) {
     const data = JSON.stringify(user);
-    const body = [
-      { 'propName': 'userId', 'value': user.userId },
-      { 'propName': 'password', 'value': user.password },
-      { 'propName': 'badgeId', 'value': user.badgeId },
-      { 'propName': 'nick', 'value': user.nick },
-      { 'propName': 'fullName', 'value': user.fullName }
-    ]
+    
     const headerOptions = new Headers({'Content-Type': 'application/json'});
     const requestOptions = new RequestOptions({method: RequestMethod.Patch, headers: headerOptions});
-    return this.http.patch(this._url + '/' + _id, body, requestOptions)
+    return this.http.patch(this._url + '/' + _id, user, requestOptions)
                     .map(x => x.json());
   }
 

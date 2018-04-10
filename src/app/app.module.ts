@@ -3,29 +3,25 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { CategoriesComponent } from './page/categories/categories.component';
-import { TablesComponent } from './page/tables/tables.component';
-import { UsersComponent } from './page/users/users.component';
-import { HomeComponent } from './page/home/home.component';
 import { routingComponents, AppRoutingModule } from './app-routing.module';
 import { HttpClient } from 'selenium-webdriver/http';
-import { CategoryComponent } from './page/categories/category/category.component';
-import { CategoryListComponent } from './page/categories/category-list/category-list.component';
 import { APP_BASE_HREF } from '@angular/common';
-import { CategoryService } from './services/category.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
-import { UserComponent } from './page/users/user/user.component';
-import { UserListComponent } from './page/users/user-list/user-list.component';
-import { UserService } from './services/user.service';
-import { TableComponent } from './page/tables/table/table.component';
-import { TableListComponent } from './page/tables/table-list/table-list.component';
-import { TableService } from './services/table.service';
+import { HomeComponent } from './page/home/home.component';
+import { CategoriesComponent } from './page/categories/categories.component';
+import { TablesComponent } from './page/tables/tables.component';
+import { UsersComponent } from './page/users/users.component';
 import { ProductsComponent } from './page/products/products.component';
-import { ProductComponent } from './page/products/product/product.component';
-import { ProductListComponent } from './page/products/product-list/product-list.component';
+
+import { CategoryService } from './services/category.service';
+import { UserService } from './services/user.service';
+import { TableService } from './services/table.service';
+import { ProductService } from './services/product.service';
 
 
 @NgModule({
@@ -36,15 +32,7 @@ import { ProductListComponent } from './page/products/product-list/product-list.
     UsersComponent,
     HomeComponent,
     routingComponents,
-    CategoryComponent,
-    CategoryListComponent,
-    UserComponent,
-    UserListComponent,
-    TableComponent,
-    TableListComponent,
-    ProductsComponent,
-    ProductComponent,
-    ProductListComponent
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,9 +40,11 @@ import { ProductListComponent } from './page/products/product-list/product-list.
     HttpClientModule,
     HttpModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ModalModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}, CategoryService, UserService, TableService],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}, CategoryService, UserService, TableService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
